@@ -70,6 +70,20 @@ frontPal2.load('objects/pal.obj', function (object) {
 	object.position.x = 800;
 	object.position.z = -500;
 });
+backPal1.load('objects/pal.obj', function (object) {
+	scene.add(object);
+	object.rotateZ(0);
+	object.rotateY(-3.1);
+	object.position.x = -800;
+	object.position.z = 700;
+});
+backPal2.load('objects/pal.obj', function (object) {
+	scene.add(object);
+	object.rotateZ(0);
+	object.rotateY(3.1);
+	object.position.x = -800;
+	object.position.z = -500;
+});
 
 window.addEventListener('resize', onResize, false);
 
