@@ -541,13 +541,14 @@ ptz1.load('objects/ptz_kamera.obj', function (object) {
 	else {
 		object.rotateY(3.1);
 	}
-	object.position.y = (900 + parseInt(rightmast) + 200);
+	if (rightmast != null) {
+		object.position.y = (900 + parseInt(rightmast) + 200);
+	}
+	else {
+		object.position.y = (900);
+	}
 	object.scale.set(1, 1, 1);
 });
-
-
-
-
 
 window.addEventListener('resize', onResize, false);
 
