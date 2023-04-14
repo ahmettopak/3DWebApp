@@ -422,14 +422,6 @@ mastUst.load('objects/mast1.obj', function (object) {
 
 });
 
-// turretBody.load('objects/tu.obj', function (object) {
-// 	scene.add(object);
-// 	object.position.x = 0;//boy
-// 	object.position.z = 300;//en
-// 	object.position.y = 50;
-// 	object.scale.set(15, 10, 15);
-
-// });
 
 mastTaban2.load('objects/mast_taban.obj', function (object) {
 	scene.add(object);
