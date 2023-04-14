@@ -19,7 +19,7 @@ console.log(backpal);
 camera.position.z = 2000;
 camera.position.y = -80;
 
-//CAmera Settings
+//Camera Settings
 //camera.position.x = -6.612;
 //camera.position.y = -144.651;
 //camera.position.z = 0;
@@ -58,9 +58,6 @@ scene.add(backLight1);
 
 
 
-mtlLoader = new THREE.MTLLoader();
-mtlLoader.setTexturePath('objects/');
-
 body = new THREE.OBJLoader();
 frontPal1 = new THREE.OBJLoader();
 frontPal2 = new THREE.OBJLoader();
@@ -70,6 +67,11 @@ mastTaban = new THREE.OBJLoader();
 mastUst = new THREE.OBJLoader();
 mastTaban2 = new THREE.OBJLoader();
 mastUst2 = new THREE.OBJLoader();
+ptz1 = new THREE.OBJLoader();
+turretBody = new THREE.OBJLoader();
+turret = new THREE.OBJLoader();
+
+
 
 body.load('objects/body_yeni.obj', function (object) {
 	scene.add(object);
@@ -153,6 +155,7 @@ frontPal1.load('objects/pal.obj', function (object) {
 		object.position.z = 600;
 	}
 });
+
 frontPal2.load('objects/pal.obj', function (object) {
 	scene.add(object);
 	if (frontpal != null) {
@@ -232,6 +235,7 @@ frontPal2.load('objects/pal.obj', function (object) {
 
 
 });
+
 backPal1.load('objects/pal.obj', function (object) {
 	scene.add(object);
 
@@ -389,34 +393,161 @@ mastTaban.load('objects/mast_taban.obj', function (object) {
 	object.position.x = 0;//boy
 	object.position.z = 300;//en
 	object.position.y = 300;
-	object.scale.set(8, 9, 8);
+	object.scale.set(8, 8, 8);
 
 });
-mastUst.load('objects/mast2_acik.obj', function (object) {
+
+mastUst.load('objects/mast1.obj', function (object) {
 	scene.add(object);
-	object.position.x = 0;//boy
-	object.position.z = 300;//en
-	object.position.y = 50;
-	object.scale.set(15, 10, 15);
+	object.position.x = 10;//boy
+	object.position.z = -120;//en
+	object.position.y = 450;
+	object.scale.set(0.7, 0.6, 0.7);
+	if (rightmast != null) {
+		if (rightmast > 450) {
+			object.position.y = 450;
+		}
+		else if (rightmast < -250) {
+			object.position.y = -250;
+		}
+		else {
+			object.position.y = rightmast;
+		}
+
+	}
+	else {
+		object.position.y = -250;
+	}
+
 
 });
+
+// turretBody.load('objects/tu.obj', function (object) {
+// 	scene.add(object);
+// 	object.position.x = 0;//boy
+// 	object.position.z = 300;//en
+// 	object.position.y = 50;
+// 	object.scale.set(15, 10, 15);
+
+// });
 
 mastTaban2.load('objects/mast_taban.obj', function (object) {
 	scene.add(object);
 	object.position.x = 0;//boy
 	object.position.z = -100;//en
 	object.position.y = 300;
-	object.scale.set(8, 9, 8);
-
+	object.scale.set(8, 8, 8);
 });
-mastUst2.load('objects/mast2_acik.obj', function (object) {
+
+mastUst2.load('objects/mast1.obj', function (object) {
 	scene.add(object);
-	object.position.x = 0;//boy
-	object.position.z = -100;//en
-	object.position.y = 50;
-	object.scale.set(15, 10, 15);
+	object.position.x = 10;//boy
+	object.position.z = -520;//en
+	if (leftmast != null) {
+		if (leftmast > 450) {
+			object.position.y = 450;
 
+		}
+		else if (leftmast < -250) {
+			object.position.y = -250;
+
+		}
+		else {
+			object.position.y = leftmast;
+		}
+
+	}
+	else {
+		object.position.y = -250;
+	}
+
+	object.scale.set(0.7, 0.6, 0.7);
 });
+
+ptz1.load('objects/ptz_kamera.obj', function (object) {
+	scene.add(object);
+	object.position.x = -20;//boy
+	object.position.z = 350;//en
+	object.rotateX(3.1);
+
+	if (ptz != null) {
+		// if (ptz > 0 && ptz <= 45) {
+		// 	object.rotateY(0.5);
+
+		// 	object.position.x = -70;//boy
+		// 	object.position.z = 120;//en
+
+
+		// }
+		// else if (ptz > 45 && ptz <= 90) {
+		// 	object.rotateY(1);
+
+		// 	object.position.x = -220;//boy
+		// 	object.position.z = 120;//en
+
+		// }
+
+		// else if (ptz > 90 && ptz <= 135) {
+
+		// 	object.rotateY(1.5);
+
+		// 	object.position.x = -70;//boy
+		// 	object.position.z = 120;//en
+		// }
+		// else if (ptz > 135 && ptz <= 180) {
+
+		// 	object.rotateY(2);
+
+		// 	object.position.x = -70;//boy
+		// 	object.position.z = 120;//en
+		// }
+		// else if (ptz > 180 && ptz <= 225) {
+
+		// 	object.rotateY(2);
+
+		// 	object.position.x = -70;//boy
+		// 	object.position.z = 120;//en
+		// }
+		// else if (ptz > 225 && ptz <= 270) {
+
+		// 	object.rotateY(-0.5);
+
+		// 	object.position.x = -70;//boy
+		// 	object.position.z = 120;//en
+		// }
+		// else if (ptz > 270 && ptz <= 315) {
+		// 	object.rotateY(-1);
+		// 	object.position.x = -70;//boy
+		// 	object.position.z = 120;//en
+		// }
+		// else if (ptz > 315 && ptz <= 36) {
+		// 	object.rotateY(-1);
+		// 	object.position.x = -70;//boy
+		// 	object.position.z = 120;//en
+		// }
+		// else {
+		// 	//Sıfır Oldupu Durum
+		// 	object.position.x = -70;//boy
+		// 	object.position.z = 120;//en
+		// }
+		if (ptz > 360 || ptz < 0) {
+			object.rotateY(3.1);
+		}
+		else {
+			object.rotateY(ptz - 3.1);
+		}
+
+	}
+	else {
+		object.rotateY(3.1);
+	}
+	object.position.y = (900 + parseInt(rightmast) + 200);
+	object.scale.set(1, 1, 1);
+});
+
+
+
+
 
 window.addEventListener('resize', onResize, false);
 
