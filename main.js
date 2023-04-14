@@ -10,6 +10,9 @@ const urlParams = new URLSearchParams(window.location.search);
 
 const frontpal = urlParams.get('frontpal');
 const backpal = urlParams.get('backpal');
+const leftmast = urlParams.get('leftmast');
+const rightmast = urlParams.get('rightmast');
+const ptz = urlParams.get('ptz');
 
 console.log(frontpal);
 console.log(backpal);
@@ -63,8 +66,8 @@ frontPal1 = new THREE.OBJLoader();
 frontPal2 = new THREE.OBJLoader();
 backPal1 = new THREE.OBJLoader();
 backPal2 = new THREE.OBJLoader();
-mastOpenRight = new THREE.OBJLoader();
-mastOpenLeft = new THREE.OBJLoader();
+mastTaban = new THREE.OBJLoader();
+mastUst = new THREE.OBJLoader();
 
 body.load('objects/body_yeni.obj', function (object) {
 	scene.add(object);
@@ -379,20 +382,20 @@ backPal2.load('objects/pal.obj', function (object) {
 
 });
 
-mastOpenRight.load('objects/mast2_acik.obj', function (object) {
+mastTaban.load('objects/mast_taban.obj', function (object) {
 	scene.add(object);
 	object.position.x = 0;//boy
 	object.position.z = 300;//en
-	object.position.y = 400;
-	object.scale.set(15, 15, 15);
+	object.position.y = 300;
+	object.scale.set(8, 9, 8);
 
 });
-mastOpenLeft.load('objects/mast2_acik.obj', function (object) {
+mastUst.load('objects/mast2_acik.obj', function (object) {
 	scene.add(object);
 	object.position.x = 0;//boy
-	object.position.z = -100;//en
-	object.position.y = 420;
-	object.scale.set(15, 15, 15);
+	object.position.z = 300;//en
+	object.position.y = 50;
+	object.scale.set(15, 10, 15);
 
 });
 
