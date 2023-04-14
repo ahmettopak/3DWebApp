@@ -68,6 +68,8 @@ backPal1 = new THREE.OBJLoader();
 backPal2 = new THREE.OBJLoader();
 mastTaban = new THREE.OBJLoader();
 mastUst = new THREE.OBJLoader();
+mastTaban2 = new THREE.OBJLoader();
+mastUst2 = new THREE.OBJLoader();
 
 body.load('objects/body_yeni.obj', function (object) {
 	scene.add(object);
@@ -394,6 +396,23 @@ mastUst.load('objects/mast2_acik.obj', function (object) {
 	scene.add(object);
 	object.position.x = 0;//boy
 	object.position.z = 300;//en
+	object.position.y = 50;
+	object.scale.set(15, 10, 15);
+
+});
+
+mastTaban2.load('objects/mast_taban.obj', function (object) {
+	scene.add(object);
+	object.position.x = 0;//boy
+	object.position.z = -100;//en
+	object.position.y = 300;
+	object.scale.set(8, 9, 8);
+
+});
+mastUst2.load('objects/mast2_acik.obj', function (object) {
+	scene.add(object);
+	object.position.x = 0;//boy
+	object.position.z = -100;//en
 	object.position.y = 50;
 	object.scale.set(15, 10, 15);
 
