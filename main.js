@@ -8,27 +8,18 @@ camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 const urlParams = new URLSearchParams(window.location.search);
 
-const frontpal = urlParams.get('frontpal');
-const backpal = urlParams.get('backpal');
-const leftmast = urlParams.get('leftmast');
-const rightmast = urlParams.get('rightmast');
-const ptz = urlParams.get('ptz');
+const frontPalAngle = urlParams.get('frontpal');
+const backPalAngle = urlParams.get('backpal');
+const leftMastAngle = urlParams.get('leftmast');
+const rightMastAngle = urlParams.get('rightmast');
+const ptzAngle = urlParams.get('ptz');
+const turretAngle = urlParams.get('turret');
 
-console.log(frontpal);
-console.log(backpal);
+//Camera Settings
 camera.position.z = 2000;
 camera.position.y = 2000;
 camera.position.x = -400;
-//Camera Settings
-//camera.position.x = -6.612;
-//camera.position.y = -144.651;
-//camera.position.z = 0;
-//camera.rotation.x = 1.535/ 180 * Math.PI;
-//camera.rotation.y =  10 / 180 * Math.PI;
-//camera.rotation.z = -0.013/ 180 * Math.PI;
-
 camera.lookAt(new THREE.Vector3(0, 0, 0));
-
 
 renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -58,31 +49,32 @@ scene.add(backLight1);
 
 
 
-body = new THREE.OBJLoader();
-frontPal1 = new THREE.OBJLoader();
-frontPal2 = new THREE.OBJLoader();
-backPal1 = new THREE.OBJLoader();
-backPal2 = new THREE.OBJLoader();
-mastTaban = new THREE.OBJLoader();
-mastUst = new THREE.OBJLoader();
-mastTaban2 = new THREE.OBJLoader();
-mastUst2 = new THREE.OBJLoader();
-ptz1 = new THREE.OBJLoader();
-turretBody = new THREE.OBJLoader();
-turret = new THREE.OBJLoader();
+bodyLoader = new THREE.OBJLoader();
+frontPal1Loader = new THREE.OBJLoader();
+frontPal2Loader = new THREE.OBJLoader();
+backPal1Loader = new THREE.OBJLoader();
+backPal2Loader = new THREE.OBJLoader();
+mastTabanLoader = new THREE.OBJLoader();
+mastUstLoader = new THREE.OBJLoader();
+mastTaban2Loader = new THREE.OBJLoader();
+mastUst2Loader = new THREE.OBJLoader();
+ptzLoader = new THREE.OBJLoader();
+turretBodyLoader = new THREE.OBJLoader();
+turretLoader = new THREE.OBJLoader();
+shoulderLoader = new THREE.OBJLoader();
+elbowLoader = new THREE.OBJLoader();
 
 
-
-body.load('objects/body_yeni.obj', function (object) {
+bodyLoader.load('objects/body_yeni.obj', function (object) {
 	scene.add(object);
 	object.position.x = 0;
 	object.position.z = 0;
 });
 
-frontPal1.load('objects/pal.obj', function (object) {
+frontPal1Loader.load('objects/pal.obj', function (object) {
 	scene.add(object);
-	if (frontpal != null) {
-		if (frontpal > 0 && frontpal <= 30) {
+	if (frontPalAngle != null) {
+		if (frontPalAngle > 0 && frontPalAngle <= 30) {
 			object.rotateZ(0.5);
 
 			object.position.x = 800;
@@ -91,7 +83,7 @@ frontPal1.load('objects/pal.obj', function (object) {
 
 
 		}
-		else if (frontpal > 30 && frontpal <= 60) {
+		else if (frontPalAngle > 30 && frontPalAngle <= 60) {
 			object.rotateZ(1);
 
 			object.position.x = 650;
@@ -100,7 +92,7 @@ frontPal1.load('objects/pal.obj', function (object) {
 
 		}
 
-		else if (frontpal > 60 && frontpal <= 90) {
+		else if (frontPalAngle > 60 && frontPalAngle <= 90) {
 
 			object.rotateZ(1.5);
 
@@ -108,7 +100,7 @@ frontPal1.load('objects/pal.obj', function (object) {
 			object.position.z = 600;
 			object.position.y = 350;
 		}
-		else if (frontpal > 90 && frontpal <= 120) {
+		else if (frontPalAngle > 90 && frontPalAngle <= 120) {
 
 			object.rotateZ(2);
 
@@ -116,7 +108,7 @@ frontPal1.load('objects/pal.obj', function (object) {
 			object.position.z = 600;
 			object.position.y = 350;
 		}
-		else if (frontpal > 120) {
+		else if (frontPalAngle > 120) {
 
 			object.rotateZ(2);
 
@@ -124,7 +116,7 @@ frontPal1.load('objects/pal.obj', function (object) {
 			object.position.z = 600;
 			object.position.y = 350;
 		}
-		else if (frontpal > -30 && frontpal < 0) {
+		else if (frontPalAngle > -30 && frontPalAngle < 0) {
 
 			object.rotateZ(-0.5);
 
@@ -132,13 +124,13 @@ frontPal1.load('objects/pal.obj', function (object) {
 			object.position.z = 600;
 			object.position.y = -200;
 		}
-		else if (frontpal > -60 && frontpal <= -30) {
+		else if (frontPalAngle > -60 && frontPalAngle <= -30) {
 			object.rotateZ(-1);
 			object.position.x = 600;
 			object.position.z = 600;
 			object.position.y = -300;
 		}
-		else if (frontpal < -60) {
+		else if (frontPalAngle < -60) {
 			object.rotateZ(-1);
 			object.position.x = 600;
 			object.position.z = 600;
@@ -156,10 +148,10 @@ frontPal1.load('objects/pal.obj', function (object) {
 	}
 });
 
-frontPal2.load('objects/pal.obj', function (object) {
+frontPal2Loader.load('objects/pal.obj', function (object) {
 	scene.add(object);
-	if (frontpal != null) {
-		if (frontpal > 0 && frontpal <= 30) {
+	if (frontPalAngle != null) {
+		if (frontPalAngle > 0 && frontPalAngle <= 30) {
 			object.rotateZ(0.5);
 
 			object.position.x = 800;
@@ -168,7 +160,7 @@ frontPal2.load('objects/pal.obj', function (object) {
 
 
 		}
-		else if (frontpal > 30 && frontpal <= 60) {
+		else if (frontPalAngle > 30 && frontPalAngle <= 60) {
 			object.rotateZ(1);
 
 			object.position.x = 650;
@@ -177,7 +169,7 @@ frontPal2.load('objects/pal.obj', function (object) {
 
 		}
 
-		else if (frontpal > 60 && frontpal <= 90) {
+		else if (frontPalAngle > 60 && frontPalAngle <= 90) {
 
 			object.rotateZ(1.5);
 
@@ -185,7 +177,7 @@ frontPal2.load('objects/pal.obj', function (object) {
 			object.position.z = -450;
 			object.position.y = 350;
 		}
-		else if (frontpal > 90 && frontpal <= 120) {
+		else if (frontPalAngle > 90 && frontPalAngle <= 120) {
 
 			object.rotateZ(2);
 
@@ -193,7 +185,7 @@ frontPal2.load('objects/pal.obj', function (object) {
 			object.position.z = -450;
 			object.position.y = 350;
 		}
-		else if (frontpal > 120) {
+		else if (frontPalAngle > 120) {
 
 			object.rotateZ(2);
 
@@ -201,7 +193,7 @@ frontPal2.load('objects/pal.obj', function (object) {
 			object.position.z = -450;
 			object.position.y = 350;
 		}
-		else if (frontpal > -30 && frontpal < 0) {
+		else if (frontPalAngle > -30 && frontPalAngle < 0) {
 
 			object.rotateZ(-0.5);
 
@@ -209,13 +201,13 @@ frontPal2.load('objects/pal.obj', function (object) {
 			object.position.z = -450;
 			object.position.y = -200;
 		}
-		else if (frontpal > -60 && frontpal <= -30) {
+		else if (frontPalAngle > -60 && frontPalAngle <= -30) {
 			object.rotateZ(-1);
 			object.position.x = 600;
 			object.position.z = -450;
 			object.position.y = -300;
 		}
-		else if (frontpal < -60) {
+		else if (frontPalAngle < -60) {
 			object.rotateZ(-1);
 			object.position.x = 600;
 			object.position.z = -450;
@@ -236,58 +228,58 @@ frontPal2.load('objects/pal.obj', function (object) {
 
 });
 
-backPal1.load('objects/pal.obj', function (object) {
+backPal1Loader.load('objects/pal.obj', function (object) {
 	scene.add(object);
 
 	object.rotateZ(-3.1);
 
 	object.rotateX(3.1);
-	if (backpal != null) {
-		if (backpal > 0 && backpal <= 30) {
+	if (backPalAngle != null) {
+		if (backPalAngle > 0 && backPalAngle <= 30) {
 			object.rotateZ(0.5);
 			object.position.x = -700;
 			object.position.z = -400;
 			object.position.y = 100;
 		}
-		else if (backpal > 30 && backpal <= 60) {
+		else if (backPalAngle > 30 && backPalAngle <= 60) {
 			object.rotateZ(1);
 			object.position.x = -600;
 			object.position.z = -400;
 			object.position.y = 300;
 		}
 
-		else if (backpal > 60 && backpal <= 90) {
+		else if (backPalAngle > 60 && backPalAngle <= 90) {
 			object.rotateZ(1.5);
 			object.position.x = -450;
 			object.position.z = -400;
 			object.position.y = 350;
 		}
-		else if (backpal > 90 && backpal <= 120) {
+		else if (backPalAngle > 90 && backPalAngle <= 120) {
 			object.rotateZ(2);
 			object.position.x = -300;
 			object.position.z = -400;
 			object.position.y = 350;
 		}
-		else if (backpal > 120) {
+		else if (backPalAngle > 120) {
 			object.rotateZ(2);
 			object.position.x = -300;
 			object.position.z = -400;
 			object.position.y = 350;
 		}
-		else if (backpal > -30 && backpal < 0) {
+		else if (backPalAngle > -30 && backPalAngle < 0) {
 			object.rotateZ(-0.5);
 			object.position.x = -650;
 			object.position.z = -400;
 			object.position.y = -200;
 		}
-		else if (backpal > -60 && backpal <= -30) {
+		else if (backPalAngle > -60 && backPalAngle <= -30) {
 			//
 			object.rotateZ(-1);
 			object.position.x = -550;
 			object.position.z = -400;
 			object.position.y = -300;
 		}
-		else if (backpal < -60) {
+		else if (backPalAngle < -60) {
 			object.rotateZ(-1);
 			object.position.x = -550;
 			object.position.z = -400;
@@ -313,64 +305,64 @@ backPal1.load('objects/pal.obj', function (object) {
 
 });
 
-backPal2.load('objects/pal.obj', function (object) {
+backPal2Loader.load('objects/pal.obj', function (object) {
 	scene.add(object);
 	object.rotateZ(-3.1);
 
 	object.rotateX(3.1);
-	if (backpal != null) {
-		if (backpal > 0 && backpal <= 30) {
+	if (backPalAngle != null) {
+		if (backPalAngle > 0 && backPalAngle <= 30) {
 			object.rotateZ(0.5);
 			object.position.x = -700;
 			object.position.z = 650;
 			object.position.y = 100;
 		}
-		else if (backpal > 30 && backpal <= 60) {
+		else if (backPalAngle > 30 && backPalAngle <= 60) {
 			object.rotateZ(1);
 			object.position.x = -600;
 			object.position.z = 650;
 			object.position.y = 300;
 		}
 
-		else if (backpal > 60 && backpal <= 90) {
+		else if (backPalAngle > 60 && backPalAngle <= 90) {
 			object.rotateZ(1.5);
 			object.position.x = -450;
 			object.position.z = 650;
 			object.position.y = 350;
 		}
-		else if (backpal > 90 && backpal <= 120) {
+		else if (backPalAngle > 90 && backPalAngle <= 120) {
 			object.rotateZ(2);
 			object.position.x = -300;
 			object.position.z = 650;
 			object.position.y = 350;
 		}
-		else if (backpal > 120) {
+		else if (backPalAngle > 120) {
 			object.rotateZ(2);
 			object.position.x = -300;
 			object.position.z = 650;
 			object.position.y = 350;
 		}
-		else if (backpal > -30 && backpal < 0) {
+		else if (backPalAngle > -30 && backPalAngle < 0) {
 			object.rotateZ(-0.5);
 			object.position.x = -650;
 			object.position.z = 650;
 			object.position.y = -200;
 		}
-		else if (backpal > -60 && backpal <= -30) {
-			//
+		else if (backPalAngle > -60 && backPalAngle <= -30) {
+
 			object.rotateZ(-1);
 			object.position.x = -550;
 			object.position.z = 650;
 			object.position.y = -300;
 		}
-		else if (backpal < -60) {
+		else if (backPalAngle < -60) {
 			object.rotateZ(-1);
 			object.position.x = -550;
 			object.position.z = 650;
 			object.position.y = -300;
 		}
 		else {
-			//Sıfır Oldupu Durum
+			//Sıfır OlduĞu Durum
 			object.rotateZ(0);
 			object.rotateX(0);
 			object.position.x = -750;
@@ -388,7 +380,7 @@ backPal2.load('objects/pal.obj', function (object) {
 
 });
 
-mastTaban.load('objects/mast_taban.obj', function (object) {
+mastTabanLoader.load('objects/mast_taban.obj', function (object) {
 	scene.add(object);
 	object.position.x = 0;//boy
 	object.position.z = 300;//en
@@ -397,21 +389,21 @@ mastTaban.load('objects/mast_taban.obj', function (object) {
 
 });
 
-mastUst.load('objects/mast1.obj', function (object) {
+mastUstLoader.load('objects/mast1.obj', function (object) {
 	scene.add(object);
 	object.position.x = 10;//boy
 	object.position.z = -120;//en
 	object.position.y = 450;
 	object.scale.set(0.7, 0.6, 0.7);
-	if (rightmast != null) {
-		if (rightmast > 450) {
+	if (rightMastAngle != null) {
+		if (rightMastAngle > 450) {
 			object.position.y = 450;
 		}
-		else if (rightmast < -250) {
+		else if (rightMastAngle < -250) {
 			object.position.y = -250;
 		}
 		else {
-			object.position.y = rightmast;
+			object.position.y = rightMastAngle;
 		}
 
 	}
@@ -423,7 +415,7 @@ mastUst.load('objects/mast1.obj', function (object) {
 });
 
 
-mastTaban2.load('objects/mast_taban.obj', function (object) {
+mastTaban2Loader.load('objects/mast_taban.obj', function (object) {
 	scene.add(object);
 	object.position.x = 0;//boy
 	object.position.z = -100;//en
@@ -431,21 +423,21 @@ mastTaban2.load('objects/mast_taban.obj', function (object) {
 	object.scale.set(8, 8, 8);
 });
 
-mastUst2.load('objects/mast1.obj', function (object) {
+mastUst2Loader.load('objects/mast1.obj', function (object) {
 	scene.add(object);
 	object.position.x = 10;//boy
 	object.position.z = -520;//en
-	if (leftmast != null) {
-		if (leftmast > 450) {
+	if (leftMastAngle != null) {
+		if (leftMastAngle > 450) {
 			object.position.y = 450;
 
 		}
-		else if (leftmast < -250) {
+		else if (leftMastAngle < -250) {
 			object.position.y = -250;
 
 		}
 		else {
-			object.position.y = leftmast;
+			object.position.y = leftMastAngle;
 		}
 
 	}
@@ -456,13 +448,13 @@ mastUst2.load('objects/mast1.obj', function (object) {
 	object.scale.set(0.7, 0.6, 0.7);
 });
 
-ptz1.load('objects/ptz_kamera.obj', function (object) {
+ptzLoader.load('objects/ptz_kamera.obj', function (object) {
 	scene.add(object);
 	object.position.x = -20;//boy
 	object.position.z = 350;//en
 	object.rotateX(3.1);
 
-	if (ptz != null) {
+	if (ptzAngle != null) {
 		// if (ptz > 0 && ptz <= 45) {
 		// 	object.rotateY(0.5);
 
@@ -522,18 +514,18 @@ ptz1.load('objects/ptz_kamera.obj', function (object) {
 		// 	object.position.x = -70;//boy
 		// 	object.position.z = 120;//en
 		// }
-		if (ptz > 360 || ptz < 0) {
+		if (ptzAngle > 360 || ptzAngle < 0) {
 			object.rotateY(3.1);
 		}
 		else {
-			object.rotateY(ptz - 3.1);
+			object.rotateY(ptzAngle - 3.1);
 		}
 
 	}
 	else {
 		object.rotateY(3.1);
 	}
-	if (rightmast != null) {
+	if (rightMastAngle != null) {
 		object.position.y = (900 + parseInt(rightmast) + 200);
 	}
 	else {
@@ -541,6 +533,39 @@ ptz1.load('objects/ptz_kamera.obj', function (object) {
 	}
 	object.scale.set(1, 1, 1);
 });
+turretBodyLoader.load('objects/turret_body.obj', function (object) {
+	scene.add(object);
+	object.position.x = 400;//boy
+	object.position.z = 100;//en
+	object.position.y = 320;
+	object.rotation.set(300, 0, 600);
+	object.scale.set(1, 1, 1);
+});
+turretLoader.load('objects/turret.obj', function (object) {
+	scene.add(object);
+	object.position.x = 400;//boy
+	object.position.z = 100;//en
+	object.position.y = 370;
+	object.rotation.set(300, 0, 600);
+	object.scale.set(1, 1, 1);
+});
+shoulderLoader.load('objects/omuz.obj', function (object) {
+	scene.add(object);
+	object.position.x = 400;//boy
+	object.position.z = 100;//en
+	object.position.y = 450;
+	object.rotation.set(0, 300, 0);
+	object.scale.set(1, 1, 1);
+});
+// elbowLoader.load('objects/dirsek.obj', function (object) {
+// 	scene.add(object);
+// 	object.position.x = -100;//boy
+// 	object.position.z = 50;//en
+// 	object.position.y = 450;
+// 	object.rotation.set(0, 0, 600);
+// 	//600 - 0
+// 	object.scale.set(1, 1, 1);
+// });
 
 window.addEventListener('resize', onResize, false);
 
