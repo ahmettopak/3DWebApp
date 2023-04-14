@@ -17,8 +17,8 @@ const ptz = urlParams.get('ptz');
 console.log(frontpal);
 console.log(backpal);
 camera.position.z = 2000;
-camera.position.y = -80;
-
+camera.position.y = 2000;
+camera.position.x = -400;
 //Camera Settings
 //camera.position.x = -6.612;
 //camera.position.y = -144.651;
