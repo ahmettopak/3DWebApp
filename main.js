@@ -6,6 +6,13 @@ const far = 8000;
 scene = new THREE.Scene();
 camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
+const urlParams = new URLSearchParams(window.location.search);
+
+const frontpal = urlParams.get('frontpal');
+const backpal = urlParams.get('backpal');
+
+console.log(frontpal);
+console.log(backpal);
 camera.position.z = 2000;
 camera.position.y = -80;
 
@@ -30,17 +37,22 @@ controls.dampingFactor = 0.25;
 controls.enableZoom = true;
 
 
-keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(30, 100%, 75%)'), 1.0);
-keyLight.position.set(-100, 0, 100);
-scene.add(keyLight);
+// keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(30, 100%, 75%)'), 1.0);
+// keyLight.position.set(-100, 0, 100);
+// scene.add(keyLight);
 
-fillLight = new THREE.DirectionalLight(new THREE.Color('hsl(240, 100%, 75%)'), 0.75);
-fillLight.position.set(100, 0, 100);
-scene.add(fillLight);
+// fillLight = new THREE.DirectionalLight(new THREE.Color('hsl(165, 6%, 13%)'), 0.75);
+// fillLight.position.set(300, 300, -300);
+// scene.add(fillLight);
 
-backLight = new THREE.DirectionalLight(0xffffff, 1.0);
-backLight.position.set(100, 0, -100).normalize();
+backLight = new THREE.DirectionalLight(0xFF222222, 1.0);
+backLight.position.set(-300, 300, 300).normalize();
 scene.add(backLight);
+
+backLight1 = new THREE.DirectionalLight(0xFF222222, 1.0);
+backLight1.position.set(300, 300, -300).normalize();
+scene.add(backLight1);
+
 
 
 mtlLoader = new THREE.MTLLoader();
@@ -51,6 +63,8 @@ frontPal1 = new THREE.OBJLoader();
 frontPal2 = new THREE.OBJLoader();
 backPal1 = new THREE.OBJLoader();
 backPal2 = new THREE.OBJLoader();
+mastOpenRight = new THREE.OBJLoader();
+mastOpenLeft = new THREE.OBJLoader();
 
 body.load('objects/body_yeni.obj', function (object) {
 	scene.add(object);
@@ -60,29 +74,326 @@ body.load('objects/body_yeni.obj', function (object) {
 
 frontPal1.load('objects/pal.obj', function (object) {
 	scene.add(object);
-	object.rotateZ(0);
-	object.position.x = 800;
-	object.position.z = 600;
+	if (frontpal != null) {
+		if (frontpal > 0 && frontpal <= 30) {
+			object.rotateZ(0.5);
+
+			object.position.x = 800;
+			object.position.z = 600;
+			object.position.y = 150;
+
+
+		}
+		else if (frontpal > 30 && frontpal <= 60) {
+			object.rotateZ(1);
+
+			object.position.x = 650;
+			object.position.z = 600;
+			object.position.y = 300;
+
+		}
+
+		else if (frontpal > 60 && frontpal <= 90) {
+
+			object.rotateZ(1.5);
+
+			object.position.x = 500;
+			object.position.z = 600;
+			object.position.y = 350;
+		}
+		else if (frontpal > 90 && frontpal <= 120) {
+
+			object.rotateZ(2);
+
+			object.position.x = 350;
+			object.position.z = 600;
+			object.position.y = 350;
+		}
+		else if (frontpal > 120) {
+
+			object.rotateZ(2);
+
+			object.position.x = 350;
+			object.position.z = 600;
+			object.position.y = 350;
+		}
+		else if (frontpal > -30 && frontpal < 0) {
+
+			object.rotateZ(-0.5);
+
+			object.position.x = 750;
+			object.position.z = 600;
+			object.position.y = -200;
+		}
+		else if (frontpal > -60 && frontpal <= -30) {
+			object.rotateZ(-1);
+			object.position.x = 600;
+			object.position.z = 600;
+			object.position.y = -300;
+		}
+		else if (frontpal < -60) {
+			object.rotateZ(-1);
+			object.position.x = 600;
+			object.position.z = 600;
+			object.position.y = -300;
+		}
+		else {
+			//Sıfır Oldupu Durum
+			object.position.x = 800;
+			object.position.z = 600;
+		}
+	}
+	else {
+		object.position.x = 800;
+		object.position.z = 600;
+	}
 });
 frontPal2.load('objects/pal.obj', function (object) {
 	scene.add(object);
-	object.rotateZ(0);
-	object.position.x = 800;
-	object.position.z = -500;
+	if (frontpal != null) {
+		if (frontpal > 0 && frontpal <= 30) {
+			object.rotateZ(0.5);
+
+			object.position.x = 800;
+			object.position.z = -450;
+			object.position.y = 150;
+
+
+		}
+		else if (frontpal > 30 && frontpal <= 60) {
+			object.rotateZ(1);
+
+			object.position.x = 650;
+			object.position.z = -450;
+			object.position.y = 300;
+
+		}
+
+		else if (frontpal > 60 && frontpal <= 90) {
+
+			object.rotateZ(1.5);
+
+			object.position.x = 500;
+			object.position.z = -450;
+			object.position.y = 350;
+		}
+		else if (frontpal > 90 && frontpal <= 120) {
+
+			object.rotateZ(2);
+
+			object.position.x = 350;
+			object.position.z = -450;
+			object.position.y = 350;
+		}
+		else if (frontpal > 120) {
+
+			object.rotateZ(2);
+
+			object.position.x = 350;
+			object.position.z = -450;
+			object.position.y = 350;
+		}
+		else if (frontpal > -30 && frontpal < 0) {
+
+			object.rotateZ(-0.5);
+
+			object.position.x = 750;
+			object.position.z = -450;
+			object.position.y = -200;
+		}
+		else if (frontpal > -60 && frontpal <= -30) {
+			object.rotateZ(-1);
+			object.position.x = 600;
+			object.position.z = -450;
+			object.position.y = -300;
+		}
+		else if (frontpal < -60) {
+			object.rotateZ(-1);
+			object.position.x = 600;
+			object.position.z = -450;
+			object.position.y = -300;
+		}
+		else {
+			//Sıfır Oldupu Durum
+			object.position.x = 800;
+			object.position.z = -450;
+		}
+
+	}
+	else {
+		object.position.x = 800;
+		object.position.z = -450;
+	}
+
+
 });
 backPal1.load('objects/pal.obj', function (object) {
 	scene.add(object);
-	object.rotateZ(0);
-	object.rotateY(-3.1);
-	object.position.x = -800;
-	object.position.z = 700;
+
+	object.rotateZ(-3.1);
+
+	object.rotateX(3.1);
+	if (backpal != null) {
+		if (backpal > 0 && backpal <= 30) {
+			object.rotateZ(0.5);
+			object.position.x = -700;
+			object.position.z = -400;
+			object.position.y = 100;
+		}
+		else if (backpal > 30 && backpal <= 60) {
+			object.rotateZ(1);
+			object.position.x = -600;
+			object.position.z = -400;
+			object.position.y = 300;
+		}
+
+		else if (backpal > 60 && backpal <= 90) {
+			object.rotateZ(1.5);
+			object.position.x = -450;
+			object.position.z = -400;
+			object.position.y = 350;
+		}
+		else if (backpal > 90 && backpal <= 120) {
+			object.rotateZ(2);
+			object.position.x = -300;
+			object.position.z = -400;
+			object.position.y = 350;
+		}
+		else if (backpal > 120) {
+			object.rotateZ(2);
+			object.position.x = -300;
+			object.position.z = -400;
+			object.position.y = 350;
+		}
+		else if (backpal > -30 && backpal < 0) {
+			object.rotateZ(-0.5);
+			object.position.x = -650;
+			object.position.z = -400;
+			object.position.y = -200;
+		}
+		else if (backpal > -60 && backpal <= -30) {
+			//
+			object.rotateZ(-1);
+			object.position.x = -550;
+			object.position.z = -400;
+			object.position.y = -300;
+		}
+		else if (backpal < -60) {
+			object.rotateZ(-1);
+			object.position.x = -550;
+			object.position.z = -400;
+			object.position.y = -300;
+		}
+		else {
+			//Sıfır Oldupu Durum
+			object.rotateZ(0);
+			object.rotateX(0);
+			object.position.x = -750;
+			object.position.z = -400;
+			object.position.y = -50;
+		}
+	}
+	else {
+		object.rotateZ(0);
+		object.rotateX(0);
+		object.position.x = -750;
+		object.position.z = -400;
+		object.position.y = -50;
+	}
+
+
 });
+
 backPal2.load('objects/pal.obj', function (object) {
 	scene.add(object);
-	object.rotateZ(0);
-	object.rotateY(3.1);
-	object.position.x = -800;
-	object.position.z = -500;
+	object.rotateZ(-3.1);
+
+	object.rotateX(3.1);
+	if (backpal != null) {
+		if (backpal > 0 && backpal <= 30) {
+			object.rotateZ(0.5);
+			object.position.x = -700;
+			object.position.z = 650;
+			object.position.y = 100;
+		}
+		else if (backpal > 30 && backpal <= 60) {
+			object.rotateZ(1);
+			object.position.x = -600;
+			object.position.z = 650;
+			object.position.y = 300;
+		}
+
+		else if (backpal > 60 && backpal <= 90) {
+			object.rotateZ(1.5);
+			object.position.x = -450;
+			object.position.z = 650;
+			object.position.y = 350;
+		}
+		else if (backpal > 90 && backpal <= 120) {
+			object.rotateZ(2);
+			object.position.x = -300;
+			object.position.z = 650;
+			object.position.y = 350;
+		}
+		else if (backpal > 120) {
+			object.rotateZ(2);
+			object.position.x = -300;
+			object.position.z = 650;
+			object.position.y = 350;
+		}
+		else if (backpal > -30 && backpal < 0) {
+			object.rotateZ(-0.5);
+			object.position.x = -650;
+			object.position.z = 650;
+			object.position.y = -200;
+		}
+		else if (backpal > -60 && backpal <= -30) {
+			//
+			object.rotateZ(-1);
+			object.position.x = -550;
+			object.position.z = 650;
+			object.position.y = -300;
+		}
+		else if (backpal < -60) {
+			object.rotateZ(-1);
+			object.position.x = -550;
+			object.position.z = 650;
+			object.position.y = -300;
+		}
+		else {
+			//Sıfır Oldupu Durum
+			object.rotateZ(0);
+			object.rotateX(0);
+			object.position.x = -750;
+			object.position.z = 650;
+			object.position.y = -50;
+		}
+	}
+	else {
+		object.rotateZ(0);
+		object.rotateX(0);
+		object.position.x = -750;
+		object.position.z = 650;
+		object.position.y = -50;
+	}
+
+});
+
+mastOpenRight.load('objects/mast2_acik.obj', function (object) {
+	scene.add(object);
+	object.position.x = 0;//boy
+	object.position.z = 300;//en
+	object.position.y = 400;
+	object.scale.set(15, 15, 15);
+
+});
+mastOpenLeft.load('objects/mast2_acik.obj', function (object) {
+	scene.add(object);
+	object.position.x = 0;//boy
+	object.position.z = -100;//en
+	object.position.y = 420;
+	object.scale.set(15, 15, 15);
+
 });
 
 window.addEventListener('resize', onResize, false);
