@@ -11,6 +11,8 @@ clampTurret = new THREE.Object3D();
 
 camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
+//örnek link
+//frontpal=30&backpal=-45&turret=300&shoulder=200&clamp=200&clampturret=300&elbow=300&wrist=600
 const urlParams = new URLSearchParams(window.location.search);
 
 const frontPalAngle = urlParams.get('frontpal');
