@@ -5,6 +5,10 @@ const far = 8000;
 
 scene = new THREE.Scene();
 shoulder = new THREE.Object3D();
+elbow = new THREE.Object3D();
+wrist = new THREE.Object3D();
+clampTurret = new THREE.Object3D();
+
 camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -17,6 +21,9 @@ const ptzAngle = urlParams.get('ptz');
 const turretAngle = urlParams.get('turret');
 const shoulderAngle = urlParams.get('shoulder');
 const elbowAngle = urlParams.get('elbow');
+const wristAngle = urlParams.get('wrist');
+const clampTurretAngle = urlParams.get('clampturret');
+const clampAngle = urlParams.get('clamp');
 
 //Camera Settings
 camera.position.z = 2000;
@@ -34,13 +41,13 @@ controls.dampingFactor = 0.25;
 controls.enableZoom = true;
 
 
-// keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(30, 100%, 75%)'), 1.0);
-// keyLight.position.set(-100, 0, 100);
-// scene.add(keyLight);
+keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(30, 100%, 75%)'), 1.0);
+keyLight.position.set(-100, 0, 100);
+scene.add(keyLight);
 
-// fillLight = new THREE.DirectionalLight(new THREE.Color('hsl(165, 6%, 13%)'), 0.75);
-// fillLight.position.set(300, 300, -300);
-// scene.add(fillLight);
+fillLight = new THREE.DirectionalLight(new THREE.Color('hsl(165, 6%, 13%)'), 0.75);
+fillLight.position.set(300, 300, -300);
+scene.add(fillLight);
 
 backLight = new THREE.DirectionalLight(0xFF222222, 1.0);
 backLight.position.set(-300, 300, 300).normalize();
@@ -66,6 +73,11 @@ turretBodyLoader = new THREE.OBJLoader();
 turretLoader = new THREE.OBJLoader();
 shoulderLoader = new THREE.OBJLoader();
 elbowLoader = new THREE.OBJLoader();
+wristLoader = new THREE.OBJLoader();
+clampTurretLoader = new THREE.OBJLoader();
+clampLeftLoader = new THREE.OBJLoader();
+clampRightLoader = new THREE.OBJLoader();
+
 
 
 bodyLoader.load('objects/body_yeni.obj', function (object) {
@@ -592,16 +604,97 @@ shoulderLoader.load('objects/omuz.obj', function (object) {
 elbowLoader.load('objects/dirsek.obj', function (object) {
 	//scene.add(object);
 	shoulder.add(object);
+	elbow = object;
 	object.position.x = -500;//boy
-	object.position.z = -80;//en
+	object.position.z = 0;//en
 	object.position.y = 0;
 	if (elbowAngle != null) {
-		object.rotation.set(0, 0, parseInt(elbowAngle));
+		object.rotation.set(600, 0, parseInt(elbowAngle));
 	}
 	else {
-		object.rotation.set(0, 0, 600);
+		object.rotation.set(600, 0, 600);
 	}
 	//1 kapalı - 8 açık
+
+	//yeni 1200 açık 600 kapalı
+	object.scale.set(1, 1, 1);
+});
+wristLoader.load('objects/bilek.obj', function (object) {
+	//scene.add(object);
+	elbow.add(object);
+	wrist = object;
+	object.position.x = -400;//boy
+	object.position.z = 30;//en
+	object.position.y = 0;
+	if (wristAngle != null) {
+		object.rotation.set(600, 0, parseInt(wristAngle));
+	}
+	else {
+		object.rotation.set(600, 0, 0);
+	}
+
+	//yeni 600 açık 0 kapalı
+	//eksi verince tersten geliyor
+	//yada yeni 1200 açık 0 kapalı
+	object.scale.set(1, 1, 1);
+});
+clampTurretLoader.load('objects/clamp_body.obj', function (object) {
+	//scene.add(object);
+	wrist.add(object);
+	clampTurret = object;
+	object.position.x = 100;//boy
+	object.position.z = -50;//en
+	object.position.y = 0;
+	if (clampTurretAngle != null) {
+		object.rotation.set(parseInt(clampTurretAngle), 300, 600);
+	}
+	else {
+		object.rotation.set(0, 300, 600);
+	}
+
+	//yeni 600 açık 0 kapalı
+	//300 tam yatay
+	//eksi verince tersten geliyor
+	//yada yeni 1200 açık 0 kapalı
+	object.scale.set(1, 1, 1);
+});
+clampLeftLoader.load('objects/clamp.obj', function (object) {
+	//scene.add(object);
+	clampTurret.add(object);
+	//clampTurret = object;
+	object.position.x = 0;//boy
+	object.position.z = 0;//en
+	object.position.y = 30;
+	if (clampAngle != null) {
+		object.rotation.set(-parseInt(clampAngle), 300, 0);
+	}
+	else {
+		object.rotation.set(0, 300, 0);
+	}
+
+	//yeni 600 açık 0 kapalı
+	//300 tam yatay
+	//eksi verince tersten geliyor
+	//yada yeni 1200 açık 0 kapalı
+	object.scale.set(1, 1, 1);
+});
+clampRightLoader.load('objects/clamp.obj', function (object) {
+	//scene.add(object);
+	clampTurret.add(object);
+	//clampTurret = object;
+	object.position.x = 0;//boy
+	object.position.z = 0;//en
+	object.position.y = -30;
+	if (clampAngle != null) {
+		object.rotation.set(parseInt(clampAngle), 900, 600);
+	}
+	else {
+		object.rotation.set(0, 900, 600);
+	}
+
+	//yeni 300 açık 0 kapalı
+	//300 tam yatay
+
 	object.scale.set(1, 1, 1);
 });
 
