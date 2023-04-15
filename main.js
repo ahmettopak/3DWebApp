@@ -103,7 +103,14 @@ clampRightLoader = new THREE.OBJLoader();
 
 
 bodyLoader.load('objects/body_yeni.obj', function (object) {
-	object.Color = 0x00ff00;
+
+	//Objeye renk verme
+/*	object.traverse(function(child) {
+		if (child instanceof THREE.Mesh) {
+		  child.material = new THREE.MeshBasicMaterial({ color: 0x38462f });
+		}
+	  });*/
+
 	scene.add(object);
 	object.position.x = 0;
 	object.position.z = 0;
