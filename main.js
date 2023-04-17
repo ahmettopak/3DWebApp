@@ -8,6 +8,7 @@ shoulder = new THREE.Object3D();
 elbow = new THREE.Object3D();
 wrist = new THREE.Object3D();
 clampTurret = new THREE.Object3D();
+rightMast = new THREE.Object3D();
 
 camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 //örnek link
@@ -436,6 +437,7 @@ mastTabanLoader.load('objects/mast_taban.obj', function (object) {
 
 mastUstLoader.load('objects/mast1.obj', function (object) {
 	scene.add(object);
+	rightMast = object;
 	object.position.x = 10;//boy
 	object.position.z = -120;//en
 	object.position.y = 450;
@@ -492,89 +494,21 @@ mastUst2Loader.load('objects/mast1.obj', function (object) {
 	object.scale.set(0.7, 0.6, 0.7);
 });
 
-ptzLoader.load('objects/ptz_kamera.obj', function (object) {
-	scene.add(object);
-	object.position.x = -20;//boy
-	object.position.z = 350;//en
-	object.rotateX(3.1);
+ptzLoader.load('objects/ptz.obj', function (object) {
+	rightMast.add(object);
+	object.position.x = 50;//boy
+	object.position.z = 800;//en
+	object.position.y = 1900;
+	//object.rotateX(3.1);
 
 	if (ptzAngle != null) {
-		if (ptzAngle > 0 && ptzAngle <= 45) {
-			object.rotateY(0.5);
 
-			object.position.x = -70;//boy
-			object.position.z = 120;//en
-
-
-		}
-		else if (ptzAngle > 45 && ptzAngle <= 90) {
-			object.rotateY(1);
-
-			object.position.x = -220;//boy
-			object.position.z = 120;//en
-
-		}
-
-		else if (ptzAngle > 90 && ptzAngle <= 135) {
-
-			object.rotateY(1.5);
-
-			object.position.x = -70;//boy
-			object.position.z = 120;//en
-		}
-		else if (ptzAngle > 135 && ptzAngle <= 180) {
-
-			object.rotateY(2);
-
-			object.position.x = -70;//boy
-			object.position.z = 120;//en
-		}
-		else if (ptzAngle > 180 && ptzAngle <= 225) {
-
-			object.rotateY(2);
-
-			object.position.x = -70;//boy
-			object.position.z = 120;//en
-		}
-		else if (ptzAngle > 225 && ptzAngle <= 270) {
-
-			object.rotateY(-0.5);
-
-			object.position.x = -70;//boy
-			object.position.z = 120;//en
-		}
-		else if (ptzAngle > 270 && ptzAngle <= 315) {
-			object.rotateY(-1);
-			object.position.x = -70;//boy
-			object.position.z = 120;//en
-		}
-		else if (ptzAngle > 315 && ptzAngle <= 36) {
-			object.rotateY(-1);
-			object.position.x = -70;//boy
-			object.position.z = 120;//en
-		}
-		else {
-			//Sıfır Oldupu Durum
-			object.position.x = -70;//boy
-			object.position.z = 120;//en
-		}
-		if (ptzAngle > 360 || ptzAngle < 0) {
-			object.rotateY(3.1);
-		}
-		else {
-			object.rotateY(ptzAngle - 3.1);
-		}
-
+		object.rotateY(ptzAngle);
 	}
 	else {
-		object.rotateY(3.1);
+		object.rotateY(600);
 	}
-	if (rightMastAngle != null) {
-		object.position.y = (900 + parseInt(rightMastAngle) + 200);
-	}
-	else {
-		object.position.y = (900);
-	}
+
 	object.scale.set(1, 1, 1);
 });
 
